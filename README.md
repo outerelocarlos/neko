@@ -1,6 +1,6 @@
 <div align="center">
   <a href="https://github.com/m1k1o/neko" title="Neko's Github repository.">
-    <img src="https://raw.githubusercontent.com/m1k1o/neko/master/docs/_media/logo.png" width="450" height="auto"/>
+    <img src="https://raw.githubusercontent.com/outerelocarlos/neko/master/docs/_media/logo.png" width="450" height="auto"/>
   </a>
   <p align="center">
     <img src="https://img.shields.io/github/v/release/m1k1o/neko" alt="release">
@@ -16,7 +16,7 @@
   </p>
   <br/>
   <br/>
-  <img src="https://i.imgur.com/ZSzbQr7.gif" width="650" height="auto"/>
+  <img src="/neko.gif" width="650" height="auto"/>
   <br/>
   <br/>
 </div>
@@ -39,6 +39,8 @@ Then I found [this](https://github.com/nurdism/neko) project and started to dig 
 ### Why n.eko?
 
 I like cats 🐱 (`Neko` is the Japanese word for cat), I'm a weeb/nerd.
+
+The dot represents the cat's place within the family: despite being smaller in size, it belongs with the rest of the letters and occupies the same space/width as them.
 
 # Multiple rooms
 
