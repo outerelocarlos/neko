@@ -40,8 +40,6 @@ Then I found [this](https://github.com/nurdism/neko) project and started to dig 
 
 I like cats 🐱 (`Neko` is the Japanese word for cat), I'm a weeb/nerd.
 
-***But why the cat butt?*** Because cats are *assholes*, but you love them anyways.
-
 # Multiple rooms
 
 For n.eko room management software, visit [neko-rooms](https://github.com/m1k1o/neko-rooms).
