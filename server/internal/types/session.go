@@ -38,11 +38,14 @@ type SessionManager interface {
 	ClearHost()
 	Has(id string) bool
 	Get(id string) (Session, bool)
+	SetControlLocked(locked bool)
+	CanControl(id string) bool
 	Members() []*Member
 	Admins() []*Member
 	Destroy(id string)
 	Clear() error
 	Broadcast(v interface{}, exclude interface{}) error
+	AdminBroadcast(v interface{}, exclude interface{}) error
 	OnHost(listener func(id string))
 	OnHostCleared(listener func(id string))
 	OnDestroy(listener func(id string, session Session))

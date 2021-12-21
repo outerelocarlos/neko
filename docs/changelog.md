@@ -2,12 +2,18 @@
 
 ## master branch
 
+### Bugs
+- Fixed fullscreen incompatibility for Safari [#121](https://github.com/m1k1o/neko/issues/121).
+
 ### New Features
 - Added `m1k1o/neko:microsoft-edge` tag.
+- Fixed clipboard sync in chromium based browsers.
+- Added support for implicit control (using `NEKO_IMPLICITCONTROL=1`). That means, users do not need to request control prior usage.
 
 ### Misc
 - Automatic WebRTC SDP negotiation using onnegotiationneeded handlers. This allows adding/removing track on demand in a session.
 - Added UDP and TCP mux for WebRTC connection. It should handle multiple peers.
+- Broadcast status change is sent to all admins now.
 
 ## [n.eko v2.5](https://github.com/m1k1o/neko/releases/tag/v2.5)
 

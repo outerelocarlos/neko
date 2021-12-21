@@ -12,19 +12,19 @@ export const state = () => ({
   id: '',
   clipboard: '',
   locked: false,
-
+  implicitHosting: true,
   keyboardModifierState: -1,
 })
 
 export const getters = getterTree(state, {
   hosting: (state, getters, root) => {
-    return root.user.id === state.id
+    return root.user.id === state.id || state.implicitHosting
   },
   hosted: (state, getters, root) => {
-    return state.id !== ''
+    return state.id !== '' || state.implicitHosting
   },
   host: (state, getters, root) => {
-    return root.user.members[state.id] || null
+    return root.user.members[state.id] || (state.implicitHosting && root.user.id) || null
   },
 })
 
@@ -49,11 +49,14 @@ export const mutations = mutationTree(state, {
     state.locked = locked
   },
 
+  setImplicitHosting(state, val: boolean) {
+    state.implicitHosting = val
+  },
+
   reset(state) {
     state.id = ''
     state.clipboard = ''
     state.locked = false
-    state.keyboardModifierState = -1
   },
 })
 
