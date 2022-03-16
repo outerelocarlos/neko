@@ -1,7 +1,7 @@
 # Getting started & FAQ
 
 Use the following docker images:
-- `m1k1o/neko:latest` - for Firefox.
+- `m1k1o/neko:latest` or `m1k1o/neko:firefox` - for Firefox.
 - `m1k1o/neko:chromium` - for Chromium (needs `--cap-add=SYS_ADMIN`, see the [security implications](https://www.redhat.com/en/blog/container-tidbits-adding-capabilities-container)).
 - `m1k1o/neko:google-chrome` - for Google Chrome (needs `--cap-add=SYS_ADMIN`, see the [security implications](https://www.redhat.com/en/blog/container-tidbits-adding-capabilities-container)).
 - `m1k1o/neko:ungoogled-chromium` - for [Ungoogled Chromium](https://github.com/Eloston/ungoogled-chromium) (needs `--cap-add=SYS_ADMIN`, see the [security implications](https://www.redhat.com/en/blog/container-tidbits-adding-capabilities-container)) (by @whalehub).
@@ -35,6 +35,31 @@ Images (except `arm-`) are built using GitHub actions on every push and on weekl
 - You can change API port (8080).
   - This **WILL** work: `3000:8080`
 
+#### But there is a hope!
+There has been an attempt to implement [single port ice using tcp and udp mux](https://github.com/m1k1o/neko/commit/c97b1fc4541caabf6b00331d081b02d2f9c58751) ([#106](https://github.com/m1k1o/neko/pull/106)), that allows using one port instead (each for TCP and/or UDP). This feature is not properly tested yet and only experimental.
+
+We can use TCP mux and/or UDP mux, example:
+
+```yaml
+version: "3.4"
+services:
+  neko:
+    image: "m1k1o/neko:firefox"
+    restart: "unless-stopped"
+    shm_size: "2gb"
+    ports:
+      - "8080:8080"
+      - "8081:8081/tcp"
+      - "8082:8082/udp"
+    environment:
+      NEKO_SCREEN: 1920x1080@30
+      NEKO_PASSWORD: neko
+      NEKO_PASSWORD_ADMIN: admin
+      NEKO_TCPMUX: 8081
+      NEKO_UDPMUX: 8082
+      NEKO_ICELITE: 1
+```
+
 ### Want to customize and install own add-ons, set custom bookmarks?
 - You would need to modify the existing policy file and mount it to your container.
 - For Firefox, copy [this](https://github.com/m1k1o/neko/blob/master/.docker/firefox/policies.json) file, modify and mount it as: ` -v '${PWD}/policies.json:/usr/lib/firefox/distribution/policies.json'`
@@ -54,8 +79,23 @@ Images (except `arm-`) are built using GitHub actions on every push and on weekl
 - There are no accounts, display name (a.k.a. username) can be freely chosen. Only password needs to match. Depending on which password matches, the visitor gets its privilege:
   - Anyone, who enters with `NEKO_PASSWORD` will be **user**.
   - Anyone, who enters with `NEKO_PASSWORD_ADMIN` will be **admin**.
+- Disabling passwords is not possible. However, you can use following query parameters to create auto-join links:
+  - Adding `?pwd=<password>` will prefill password.
+  - Adding `?usr=<display-name>` will prefill username.
+  - Adding `?cast=1` will hide all control and show only video.
+  - e.g. `http(s)://<URL:Port>/?pwd=neko&usr=guest&cast=1`
 
 ### Screen size
 - Only admins can change screen size.
 - You can set a default screen size, but this size **MUST** be one from the list, that your server supports.
 - You will get this list in frontend, where you can choose from.
+
+### Clipboard sharing
+- Browsers have certain requirements to allow clipboard sharing.
+  - Your instance must be HTTPS.
+  - Firefox does not support clipboard sharing.
+  - Use Chrome for the best experience.
+- If your browser does not support clipboard sharing:
+  - Clipboard icon in the bottom right corner will be displayed for host.
+  - It opens text area that can share clipboard content bi-directionally.
+  - Only plain-text is supported.

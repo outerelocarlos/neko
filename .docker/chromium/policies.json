@@ -20,17 +20,18 @@
   "PromptForDownloadLocation": false,
   "BookmarkBarEnabled": false,
   "PasswordManagerEnabled": false,
+  "BrowserLabsEnabled": false,
   "URLBlacklist": [
       "file://*",
       "chrome://policy"
   ],
   "ExtensionInstallForcelist": [
       "cjpalhdlnbpafiamejdnhcphjbkeiagm;https://clients2.google.com/service/update2/crx",
-      "fjoaledfpmneenckfbpdfhkmimnjocfa;https://clients2.google.com/service/update2/crx"
+      "mnjggcdmjocbbbhaepdhchncahnbgone;https://clients2.google.com/service/update2/crx"
   ],
   "ExtensionInstallWhitelist": [
       "cjpalhdlnbpafiamejdnhcphjbkeiagm",
-      "fjoaledfpmneenckfbpdfhkmimnjocfa"
+      "mnjggcdmjocbbbhaepdhchncahnbgone"
   ],
   "ExtensionInstallBlacklist": [
       "*"
