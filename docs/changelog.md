@@ -11,12 +11,15 @@
 - Fixed clipboard sync in chromium based browsers.
 - Added support for implicit control (using `NEKO_IMPLICITCONTROL=1`). That means, users do not need to request control prior usage.
 - Automatically start broadcasting using `NEKO_BROADCAST_URL=rtmp://your-rtmp-endpoint/live` (thanks @konsti).
+- Added `m1k1o/neko:remmina` tag (by @lowne).
 
 ### Misc
 - Automatic WebRTC SDP negotiation using onnegotiationneeded handlers. This allows adding/removing track on demand in a session.
 - Added UDP and TCP mux for WebRTC connection. It should handle multiple peers.
 - Broadcast status change is sent to all admins now.
 - NordVPN replaced with Sponsorblock extension in default configuration #144.
+- Removed `vncviewer` image, as its functionality is replaced and extended by remmina.
+- Opus uses `useinbandfec=1` from now on, hopefully fixes minor audio loss issues.
 
 ## [n.eko v2.5](https://github.com/m1k1o/neko/releases/tag/v2.5)
 
